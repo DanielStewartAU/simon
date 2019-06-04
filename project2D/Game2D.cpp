@@ -20,7 +20,7 @@ Game2D::Game2D(const char* title, int width, int height, bool fullscreen) : Game
 	// Create some textures for testing.
 	m_texture = new aie::Texture("./textures/hero.png");
 	m_texture2 = new aie::Texture("./textures/rock_large.png");
-	m_font = new aie::Font("./font/consolas.ttf", 24);
+	m_font = new aie::Font("./font/consolas.ttf", 40);
 	aie::Application* application = aie::Application::GetInstance();
 	unsigned int windowWidth = application->GetWindowWidth();
 	unsigned int windowHeight = application->GetWindowHeight();
@@ -180,6 +180,13 @@ void Game2D::Draw()
 	else
 		simonSquare[3]->SetColor(m_2dRenderer, 0, 1, 0, 0.2f);
 	simonSquare[3]->Draw(m_2dRenderer);
+
+	m_2dRenderer->SetRenderColour(1, 1, 1, 1);
+
+	char scoreArray[256];
+	sprintf(scoreArray, "Score: %i", score);
+	//m_2dRenderer->DrawText2D(m_font, scoreArray, 100, 100, 1);
+	m_2dRenderer->DrawText2D(m_font, scoreArray, application->GetWindowWidth() - 200, application->GetWindowHeight() - 50, 1);
 
 	// Done drawing sprites. Must be called at the end of the Draw().
 	m_2dRenderer->End();
